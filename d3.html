@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <style> /* set the CSS */
 
-.bar { fill: steelblue; }
+.bar { fill: black; }
 
 </style>
 <body>
@@ -33,7 +33,7 @@ var svg = d3.select("body").append("svg")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // get the data
-d3.csv("month.csv", function(error, data) {
+d3.csv("year.csv", function(error, data) {
   if (error) throw error;
 
   // format the data
@@ -42,7 +42,7 @@ d3.csv("month.csv", function(error, data) {
   });
 
   // Scale the range of the data in the domains
-  x.domain(data.map(function(d) { return d.Month; }));
+  x.domain(data.map(function(d) { return d.Year; }));
   y.domain([0, d3.max(data, function(d) { return d.Flights; })]);
 
   // append the rectangles for the bar chart
@@ -50,7 +50,7 @@ d3.csv("month.csv", function(error, data) {
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.Month); })
+      .attr("x", function(d) { return x(d.Year); })
       .attr("width", x.bandwidth())
       .attr("y", function(d) { return y(d.Flights); })
       .attr("height", function(d) { return height - y(d.Flights); });
